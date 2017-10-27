@@ -4,7 +4,9 @@ from selenium import webdriver
 
 def before_all(context):
     # 完成登录
-    context.browser = webdriver.Firefox()
+    #context.browser = webdriver.Firefox()
+    context.browser = webdriver.Remote(
+        command_executor='http://hub:4444/wd/hub', desired_capabilities=DesiredCapabilities.FIREFOX)
     context.browser.get("https://github.com")
     context.ele_btn = context.browser.find_element_by_link_text("Sign in")
     context.ele_btn.click()
